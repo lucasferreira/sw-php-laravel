@@ -1,72 +1,90 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Projeto Exemplo Laravel - SW-SATC
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Projeto iniciado em sala de aula visando demonstrar alguns elementos básicos de como estrutura um "micro-projeto" com Laravel.
 
-## About Laravel
+## Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Caso você não use Docker, o _setup_ de sua máquina irá exigir o seguinte:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP no mínimo versão 7.1.3
+- MySQL
+- Apache ou NGINX devidamente configurados
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sendo que se você tem o XAMPP com versões mais recentes do PHP instalado, irá conseguir rodar sem problemas.
 
-## Learning Laravel
+## Rodando com Docker
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Este projeto acompanha arquivos de configuração de um conjunto de containers em Docker com o _setup_ necessário para que este projeto rode.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Sendo um passo _opcional_ vocês caso queiram rodar no ambiente PHP de sua máquina (Ex.: XAMPP) podem pular este passo.
 
-## Laravel Sponsors
+Caso você queria tentar usar o Docker, primeiro será necessário instala-lo e configura-lo em sua máquina, siga os procedimentos deste site https://docs.docker.com/docker-for-windows/install/
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Após instalado e devidamente configurado, acessando a pasta deste projeto laravel com seu Terminal/Shell/CMD, digite o seguinte comando (uma única vez):
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+```bash
+docker-compose build
+```
 
-## Contributing
+Depois do container customizado compilado/instalado, podemos rodar oficialmente o docker e levantarmos o "endereço" em que o projeto irá rodar:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+docker-compose up
+```
 
-## Security Vulnerabilities
+## Instalando Dependências
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Para instalar as dependências do Laravel, executem o comando abaixo em seu Terminal/Shell/CMD:
 
-## License
+```bash
+composer install
+```
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+O comando acima será necessário apenas uma vez, pois o _composer_ do PHP irá baixar todas as necessidades do Laravel e depositar automaticamente na pasta `vendor`.
+
+Caso você queria trabalhar com JS e CSS (LESS/SASS) de forma "inteligente" nesse projeto, também será necessário rodar o comando abaixo:
+
+```bash
+npm install
+```
+
+O comando acima irá baixar todas as dependências de Node/Javascript necessárias para que o Laravel Mix funcione. Ao iniciar o seu desenvolvimento, recomendo deixar o Laravel Mix ligado e trabalhando, para tal rode o comando abaixo em uma janela do Termina/Shell/CMD iniciada na raiz do seu projeto laravel:
+
+```bash
+npm run watch
+```
+
+## Configurando o projeto
+
+A única necessidade de configuração de projeto exemplo será revisar as informações de configuração do banco de dados. No arquivo `.env` presente na raiz, revise os seguintes blocos:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=sw-mysql
+DB_PORT=3306
+DB_DATABASE=satc
+DB_USERNAME=root
+DB_PASSWORD=123456
+```
+
+Caso você esteja usando o XAMPP, acesse o phpMyAdmin de sua máquina e crie uma base de dados chamada `satc`, depois no arquivo `.env` do laravel coloque o `DB_HOST` como `localhost` e revise o resto das configurações.
+
+## Criando as tabelas
+
+Este projeto acompanha uma série de scripts de migração (database/migrations) responsáveis por criar nossa estrutura inicial do banco de dados. Após criar a database `satc` vazia, para criarmos as tabelas, precisaremos acessar o Terminal/Shell/CMD e rodar o seguinte comando:
+
+```bash
+php artisan migrate
+```
+
+Se o comando acima for completado com sucesso poderemos conferir no phpMyAdmin se as tabelas `cursos` e `alunos` foram criadas com sucesso.
+
+## Rodando o projeto
+
+Se o seu projeto está rodando com base no Docker, o endereço de acesso do projeto será:
+
+http://localhost:8000
+
+Se o seu projeto está rodando no XAMPP (ou outro setup semelhante baseado em Apache) será algo mais ou menos assim:
+
+http://localhost/sw-php-laravel/public
