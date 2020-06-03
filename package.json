@@ -1,0 +1,42 @@
+{
+    "private": true,
+    "scripts": {
+        "start": "npm run watch",
+        "upd": "yarn upgrade-interactive --latest",
+        "docker-bash": "docker exec -it sw-php /bin/bash",
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "build": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "dependencies": {
+        "@fancyapps/fancybox": "^3.5.7",
+        "bootstrap": "3",
+        "cleave.js": "^1.5.10",
+        "gsap": "^3.2.6",
+        "intersection-observer": "^0.10.0",
+        "jcarousel": "^0.3.9",
+        "jquery": "^3.5.1",
+        "jquery-scrollify": "^1.0.20",
+        "jquery-touchswipe": "^1.6.19",
+        "jquery-validation": "^1.19.1",
+        "lodash": "^4.17.15",
+        "overlayscrollbars": "^1.12.0",
+        "select2": "^4.0.13"
+    },
+    "devDependencies": {
+        "copy-webpack-plugin": "^5.1.1",
+        "cross-env": "^7.0.2",
+        "imagemin-mozjpeg": "^8.0.0",
+        "imagemin-webpack-plugin": "^2.4.2",
+        "laravel-mix": "^5.0.4",
+        "less": "^3.11.1",
+        "less-loader": "^6.0.0",
+        "resolve-url-loader": "^3.1.1",
+        "vue-template-compiler": "^2.6.11"
+    }
+}
