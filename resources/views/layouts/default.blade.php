@@ -22,17 +22,20 @@
             </button>
             <a class="navbar-brand" href="{{ route('home') }}">SATC SW</a>
           </div>
+          @if(Auth::check())
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="{{ route('home') }}">Home</a></li>
               <li><a href="{{ route("cursos.index") }}">Cursos</a></li>
               <li><a href="{{ route("alunos.index") }}">Alunos</a></li>
+              <li><a href="{{ route("users.index") }}">Usuários</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="{{ route('home') }}">Default <span class="sr-only">(current)</span></a></li>
+              <li><a href="{{ url('/logout') }}">Sair / Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
+        @endif
       </nav>
 
       {{-- Info Alert --}}
@@ -76,6 +79,13 @@
       </footer>
     </div> <!-- /container -->
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- nosso código no de baixo -->
     <script type="text/javascript" src="{{ asset('/js/default.js') }}"></script>
   </body>
 </html>

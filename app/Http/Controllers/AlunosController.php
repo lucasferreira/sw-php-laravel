@@ -3,10 +3,16 @@ namespace App\Http\Controllers;
 
 use App\Aluno;
 use App\Curso;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class AlunosController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
   private function validator(Request $request)
   {
     // validation rules.
@@ -17,9 +23,9 @@ class AlunosController extends Controller
 
     // custom validation error messages.
     $messages = array(
-        'name.required' => 'Por favor informe um nome de aluno válido',
-        'email.required' => 'Por favor informe um e-mail de aluno válido',
-        'email.email' => 'Por favor informe um e-mail de aluno válido'
+      'name.required' => 'Por favor informe um nome de aluno válido',
+      'email.required' => 'Por favor informe um e-mail de aluno válido',
+      'email.email' => 'Por favor informe um e-mail de aluno válido',
     );
 
     $labels = array(
@@ -51,7 +57,7 @@ class AlunosController extends Controller
   {
     $cursos = Curso::pluck('name', 'id');
 
-    return view('alunos.create', ['cursos' => $cursos]);
+    return view('alunos.create', array('cursos' => $cursos));
   }
 
   /**
@@ -68,6 +74,12 @@ class AlunosController extends Controller
     $novoAluno->name = $request->name;
     $novoAluno->email = $request->email;
     $novoAluno->curso_id = $request->curso_id;
+
+    if ($request->hasFile('avatar') && $request->file('avatar')->isValid())
+    {
+      $novoAluno->avatar = $request->avatar->store('alunos');
+    }
+
     $novoAluno->save();
 
     return redirect()
@@ -83,7 +95,7 @@ class AlunosController extends Controller
    */
   public function show(Aluno $aluno)
   {
-    return view('alunos.show', ['aluno' => $aluno]);
+    return view('alunos.show', array('aluno' => $aluno));
   }
 
   /**
@@ -96,7 +108,7 @@ class AlunosController extends Controller
   {
     $cursos = Curso::pluck('name', 'id');
 
-    return view('alunos.edit', ['aluno' => $aluno, 'cursos' => $cursos]);
+    return view('alunos.edit', array('aluno' => $aluno, 'cursos' => $cursos));
   }
 
   /**
@@ -113,6 +125,13 @@ class AlunosController extends Controller
     $aluno->name = $request->name;
     $aluno->email = $request->email;
     $aluno->curso_id = $request->curso_id;
+    $aluno->data_nascimento = $request->data_nascimento;
+
+    if ($request->hasFile('avatar') && $request->file('avatar')->isValid())
+    {
+      $aluno->avatar = $request->avatar->store('alunos');
+    }
+
     $aluno->save();
 
     return redirect()
@@ -133,5 +152,24 @@ class AlunosController extends Controller
     return redirect()
       ->route('alunos.index')
       ->with('success', 'Aluno deletado com sucesso!');
+  }
+
+    /**
+   * Remove the specified resource from storage.
+   *
+   * @param  \App\Aluno  $aluno
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy_foto(Aluno $aluno)
+  {
+    if(!empty($aluno->avatar))
+    {
+      Storage::delete($aluno->avatar);
+
+      $aluno->avatar = null;
+      $aluno->save();
+    }
+
+    return redirect()->back();
   }
 }

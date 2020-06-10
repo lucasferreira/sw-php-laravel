@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class CursosController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
   private function validator(Request $request)
   {
     // validation rules.

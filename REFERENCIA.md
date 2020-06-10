@@ -138,3 +138,9 @@ class User extends Authenticatable
     ];
 }
 ```
+
+## Tornar pasta public de uploads disponíveis para o mundo
+
+Rodar o comando abaixo apenas uma única vez em cada ambiente:
+
+`php artisan storage:link`

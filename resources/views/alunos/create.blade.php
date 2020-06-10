@@ -6,7 +6,7 @@
   <h2>Novo Aluno</h2>
 </div>
 
-<form action="{{ route('alunos.store') }}" method="post">
+<form action="{{ route('alunos.store') }}" method="post" enctype="multipart/form-data">
   @csrf
   <fieldset>
     <div class="form-group @if ($errors->has('curso_id')) has-error @endif">
@@ -38,6 +38,25 @@
       @if ($errors->has('email'))
       <span class="invalid-feedback help-block" role="alert">
           <strong>{{ $errors->first('email') }}</strong>
+      </span>
+      @endif
+    </div>
+    <div class="form-group @if ($errors->has('data_nascimento')) has-error @endif">
+      <label class="control-label" for="data_nascimento">Data de Nascimento</label>
+      <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
+      @if ($errors->has('data_nascimento'))
+      <span class="invalid-feedback help-block" role="alert">
+          <strong>{{ $errors->first('data_nascimento') }}</strong>
+      </span>
+      @endif
+    </div>
+
+    <div class="form-group @if ($errors->has('avatar')) has-error @endif">
+      <label class="control-label" for="avatar">Foto do Aluno</label>
+      <input type="file" class="form-control" id="avatar" name="avatar">
+      @if ($errors->has('avatar'))
+      <span class="invalid-feedback help-block" role="alert">
+          <strong>{{ $errors->first('avatar') }}</strong>
       </span>
       @endif
     </div>
