@@ -24,7 +24,7 @@
         "jquery-scrollify": "^1.0.20",
         "jquery-touchswipe": "^1.6.19",
         "jquery-validation": "^1.19.1",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "overlayscrollbars": "^1.12.0",
         "select2": "^4.0.13"
     },
