@@ -17,7 +17,7 @@
         "@fancyapps/fancybox": "^3.5.7",
         "bootstrap": "3",
         "cleave.js": "^1.5.10",
-        "gsap": "^3.2.6",
+        "gsap": "^3.6.0",
         "intersection-observer": "^0.10.0",
         "jcarousel": "^0.3.9",
         "jquery": "^3.5.1",
